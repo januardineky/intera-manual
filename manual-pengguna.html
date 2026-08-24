@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INTERA — Manual Pengguna</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --soft: #eff6ff;
+    --green: #16a34a;
+    --amber: #d97706;
+    --red: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    line-height: 1.65;
+    background: #f8fafc;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    color: #fff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    margin-bottom: 28px;
+  }
+  header.hero h1 { margin: 0 0 6px; font-size: 30px; }
+  header.hero p { margin: 0; opacity: .9; }
+  nav.toc {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+  nav.toc h2 { margin: 0 0 10px; font-size: 15px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  nav.toc ol { margin: 0; padding-left: 22px; columns: 2; gap: 32px; }
+  nav.toc li { margin: 4px 0; }
+  nav.toc a { color: var(--primary); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  section { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; margin-bottom: 24px; }
+  h2.sec { display:flex; align-items:center; gap:10px; margin: 0 0 14px; font-size: 21px; }
+  h2.sec .no {
+    background: var(--soft); color: var(--primary);
+    width: 32px; height: 32px; border-radius: 9px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  h3 { margin: 22px 0 8px; font-size: 16px; }
+  p { margin: 8px 0; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  code, .mono {
+    font-family: Consolas, "Courier New", monospace;
+    background: #f1f5f9; padding: 1px 6px; border-radius: 5px; font-size: 13px;
+  }
+  pre {
+    background: #0f172a; color: #e2e8f0; padding: 13px 16px;
+    border-radius: 9px; overflow-x: auto; font-size: 13px; line-height: 1.5;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  .note {
+    border-left: 4px solid var(--primary);
+    background: var(--soft);
+    padding: 11px 15px; border-radius: 0 9px 9px 0;
+    margin: 12px 0; font-size: 14.5px;
+  }
+  .warn { border-color: var(--amber); background: #fffbeb; }
+  .ok { border-color: var(--green); background: #f0fdf4; }
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps li {
+    counter-increment: step;
+    position: relative; padding-left: 40px; margin: 10px 0;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 2px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+  }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; }
+  .pill.high { background: #fef2f2; color: var(--red); }
+  .pill.medium { background: #fffbeb; color: var(--amber); }
+  .pill.low { background: #f0fdf4; color: var(--green); }
+  .formula {
+    background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 9px;
+    padding: 13px 16px; margin: 10px 0; text-align: center; font-size: 15px;
+  }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 36px; }
+  @media (max-width: 640px) { nav.toc ol { columns: 1; } section { padding: 20px 18px; } }
+  @media print {
+    body { background: #fff; }
+    section, nav.toc { border: none; padding: 0; page-break-inside: avoid; }
+    header.hero { border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>INTERA — Manual Pengguna</h1>
+  <p>Panduan lengkap Guru BK: dari menyiapkan data sampai memahami cara sistem menghitung prioritas intervensi.</p>
+</header>
+
+<nav class="toc">
+  <h2>Daftar Isi</h2>
+  <ol>
+    <li><a href="#s1">Apa itu INTERA</a></li>
+    <li><a href="#s2">Masuk ke Aplikasi</a></li>
+    <li><a href="#s3">Alur Kerja Mingguan</a></li>
+    <li><a href="#s4">Menyiapkan &amp; Mengimpor Data</a></li>
+    <li><a href="#s5">Membaca Beranda</a></li>
+    <li><a href="#s6">Cara Perhitungan Prioritas</a></li>
+    <li><a href="#s7">Halaman Rekomendasi</a></li>
+    <li><a href="#s8">Rencana Intervensi</a></li>
+    <li><a href="#s9">Profil &amp; Kata Sandi</a></li>
+    <li><a href="#s10">Pertanyaan Umum</a></li>
+  </ol>
+</nav>
+
+<!-- ================= 1 ================= -->
+<section id="s1">
+  <h2 class="sec"><span class="no">1</span>Apa itu INTERA</h2>
+  <p><b>INTERA</b> membantu Guru BK menjawab satu pertanyaan: <i>dari ratusan siswa, siapa yang paling perlu didampingi lebih dulu?</i> Sistem membaca catatan rutin sekolah — kehadiran, nilai, dan poin pelanggaran — lalu menyusun daftar prioritas beserta alasannya.</p>
+
+  <h3>Yang dilakukan INTERA</h3>
+  <ul>
+    <li>Mengumpulkan data dari berkas CSV yang Anda impor</li>
+    <li>Menganalisis perubahan kondisi siswa pada beberapa pekan terakhir</li>
+    <li>Menyusun peringkat prioritas intervensi beserta <b>alasan yang bisa dibaca</b></li>
+    <li>Mencatat tindak lanjut melalui rencana intervensi</li>
+  </ul>
+
+  <div class="note warn">
+    <b>Yang tidak dilakukan INTERA:</b> sistem tidak mendiagnosis kondisi psikologis,
+    tidak mengganti keputusan profesional Guru BK, dan tidak pernah bertindak otomatis.
+    Setiap rekomendasi harus ditinjau dan disetujui manusia sebelum menjadi dasar intervensi.
+  </div>
+</section>
+
+<!-- ================= 2 ================= -->
+<section id="s2">
+  <h2 class="sec"><span class="no">2</span>Masuk ke Aplikasi</h2>
+  <ol class="steps">
+    <li>Buka alamat aplikasi INTERA di browser.</li>
+    <li>Masukkan <b>email</b> dan <b>kata sandi</b> akun Guru BK.</li>
+    <li>Tekan <b>Masuk</b>. Jika berhasil, Anda tiba di halaman <b>Beranda</b>.</li>
+  </ol>
+  <p>Menu di bilah samping (dari atas ke bawah): <b>Beranda, Siswa, Rekomendasi, Impor CSV, Rencana Intervensi,</b> dan <b>Profil</b>. Tombol <b>Keluar</b> ada di bagian bawah bilah samping.</p>
+</section>
+
+<!-- ================= 3 ================= -->
+<section id="s3">
+  <h2 class="sec"><span class="no">3</span>Alur Kerja Mingguan</h2>
+  <p>Siklus pemakaian yang disarankan:</p>
+  <ol class="steps">
+    <li><b>Kumpulkan rekapan</b> kehadiran, nilai, dan catatan pelanggaran dari wali kelas / guru mata pelajaran.</li>
+    <li><b>Siapkan berkas CSV</b> sesuai format (bagian 4).</li>
+    <li><b>Impor</b> lewat halaman Impor CSV — boleh per kelas, tidak harus satu sekolah sekaligus.</li>
+    <li><b>Buat Rekomendasi</b> di halaman Rekomendasi.</li>
+    <li><b>Tinjau</b> daftar prioritas dan alasannya; terima atau tolak tiap rekomendasi.</li>
+    <li><b>Rancang intervensi</b> untuk rekomendasi yang diterima.</li>
+  </ol>
+  <div class="note">
+    Impor boleh bertahap (hari ini kelas A, besok kelas B). Namun usahakan <b>membuat rekomendasi
+    setelah data periode tersebut lengkap</b>, karena pemeringkatan bersifat relatif antar siswa —
+    hasil dari data yang setengah jalan belum adil sebagai dasar keputusan.
+  </div>
+</section>
+
+<!-- ================= 4 ================= -->
+<section id="s4">
+  <h2 class="sec"><span class="no">4</span>Menyiapkan &amp; Mengimpor Data</h2>
+
+  <h3>Urutan impor</h3>
+  <table>
+    <tr><th>#</th><th>Jenis berkas</th><th>Kapan</th></tr>
+    <tr><td>1</td><td>Jurusan</td><td rowspan="3">Sekali di awal tahun ajaran</td></tr>
+    <tr><td>2</td><td>Mata Pelajaran</td></tr>
+    <tr><td>3</td><td>Siswa</td></tr>
+    <tr><td>4</td><td>Kehadiran</td><td rowspan="3">Rutin, setiap kali ada rekapan baru</td></tr>
+    <tr><td>5</td><td>Akademik</td></tr>
+    <tr><td>6</td><td>Pelanggaran</td></tr>
+  </table>
+
+  <h3>Aturan umum semua berkas</h3>
+  <ul>
+    <li>Format <b>CSV</b>, baris pertama adalah nama kolom persis seperti tercantum di tiap tab impor.</li>
+    <li>Impor bersifat aman diulang: baris yang sama akan diperbarui, bukan digandakan.</li>
+    <li>Baris bermasalah <b>ditolak satu per satu</b> — baris lain tetap masuk. Daftar penolakan tampil setelah impor beserta alasannya.</li>
+    <li>Duplikat di dalam satu berkas ditolak agar angka analisis tidak dobel.</li>
+  </ul>
+
+  <h3>Format tiap jenis berkas</h3>
+
+  <p><b>Jurusan</b> — kolom <code>Name, Code</code>.</p>
+  <pre><code>Name,Code
+Rekayasa Perangkat Lunak,RPL</code></pre>
+
+  <p><b>Mata Pelajaran</b> — kolom <code>Name, Code, Major</code>. <code>Major</code> boleh beberapa kode jurusan sekaligus, dipisah koma/titik koma — mapel otomatis dibuatkan di tiap jurusan.</p>
+  <pre><code>Name,Code,Major
+Matematika,MTK,RPL;TKJ
+Bahasa Indonesia,BIN,RPL</code></pre>
+
+  <p><b>Siswa</b> — kolom <code>NIS, Name, Gender, Class, Major</code>.
+  <code>Gender</code>: <code>male</code>/<code>female</code> atau <code>L</code>/<code>P</code>.
+  Kelas dibuat otomatis jika belum ada; jurusan boleh kosong asalkan kode jurusan tercantum dalam nama kelas (mis. <code>10 RPL 1</code>).</p>
+  <pre><code>NIS,Name,Gender,Class,Major
+2025001,Ahmad Fauzi,L,10 RPL 1,RPL</code></pre>
+
+  <p><b>Kehadiran</b> — kolom <code>NIS, Date, Status</code>, satu baris per hari.
+  Status: <code>H</code> hadir, <code>I</code> izin, <code>S</code> sakit, <code>A</code> alpa.
+  Sistem otomatis merangkumnya per pekan.</p>
+  <pre><code>NIS,Date,Status
+2025001,2026-08-10,H
+2025001,2026-08-11,A</code></pre>
+
+  <p><b>Akademik</b> — kolom <code>NIS, Subject, Score, Date</code>. Subject boleh kode atau nama mapel. Nilai 0–100.</p>
+  <pre><code>NIS,Subject,Score,Date
+2025001,MTK,78,2026-08-05</code></pre>
+
+  <p><b>Pelanggaran</b> — kolom <code>NIS, Date, Category, Description</code>. Description opsional.
+  Category memakai kode tata tertib yang sudah dikenali sistem; poinnya dihitung otomatis.</p>
+  <pre><code>NIS,Date,Category,Description
+2025001,2026-08-12,MEROKOK,Dicegat petugas piket</code></pre>
+
+  <table>
+    <tr><th>Kode kategori</th><th>Arti</th><th>Poin</th></tr>
+    <tr><td><code>TERLAMBAT</code></td><td>Terlambat masuk kelas</td><td>5</td></tr>
+    <tr><td><code>ATRIBUT</code></td><td>Kelalaian atribut seragam</td><td>10</td></tr>
+    <tr><td><code>BOLONG</code></td><td>Membolos jam pelajaran</td><td>15</td></tr>
+    <tr><td><code>MEROKOK</code></td><td>Merokok di lingkungan sekolah</td><td>50</td></tr>
+    <tr><td><code>BERKELAHI</code></td><td>Perkelahian</td><td>100</td></tr>
+  </table>
+  <div class="note warn">
+    Daftar kategori dan poin mengacu pada tata tertib sekolah. Jika ada jenis pelanggaran baru,
+    hubungi pengelola aplikasi untuk menambahkannya.
+  </div>
+</section>
+
+<!-- ================= 5 ================= -->
+<section id="s5">
+  <h2 class="sec"><span class="no">5</span>Membaca Beranda</h2>
+
+  <h3>Kartu statistik</h3>
+  <ul>
+    <li><b>Total Siswa</b> — jumlah siswa yang datanya sudah ada di sistem.</li>
+    <li><b>Prioritas Tinggi / Sedang</b> — hasil rekomendasi <b>terakhir</b> untuk tiap siswa.</li>
+    <li><b>Intervensi Aktif</b> — rencana intervensi yang sedang direncanakan atau berjalan.</li>
+  </ul>
+
+  <h3>Distribusi Prioritas</h3>
+  <p>Proporsi siswa pada tiap tingkat prioritas berdasarkan rekomendasi terakhir mereka.</p>
+
+  <h3>Tren Prioritas Tinggi</h3>
+  <p>Grafik jumlah siswa berprioritas tinggi <b>per jendela analisis</b> dari waktu ke waktu — cara cepat melihat apakah kondisi sekolah membaik atau memburuk.</p>
+  <div class="note">
+    Satu titik pada grafik adalah hal yang <b>wajar</b>: titik baru muncul ketika ada pekan
+    kehadiran baru dan rekomendasi dibuat ulang. Titik tidak bertambah walau tombol
+    Generate ditekan berkali-kali pada data yang sama.
+  </div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section id="s6">
+  <h2 class="sec"><span class="no">6</span>Cara Perhitungan Prioritas</h2>
+  <p>INTERA memakai metode <b>SAW (Simple Additive Weighting)</b>: setiap kriteria dinilai, dibobot, lalu dijumlahkan menjadi satu skor 0–1. Prinsip utamanya: yang dinilai adalah <b>perubahan terbaru</b>, bukan capaian semester yang lama.</p>
+
+  <h3>Jendela pandang: 3 + 1 pekan</h3>
+  <ul>
+    <li><b>Jendela berjalan</b> = 3 pekan terakhir — kondisi siswa saat ini.</li>
+    <li><b>Pekan pembanding</b> = 1 pekan tepat sebelum jendela berjalan — untuk melihat arah perubahan (membaik / memburuk).</li>
+  </ul>
+
+  <h3>Tiga kriteria penilaian</h3>
+  <table>
+    <tr><th>Kriteria</th><th>Bobot</th><th>Nilai mentah didapat dari</th></tr>
+    <tr>
+      <td><b>Kehadiran</b></td><td align="center"><b>0.45</b></td>
+      <td>Kenaikan rasio ketidakhadiran tanpa ketimbang pekan sebelumnya, ditambah tingkat alpa saat ini.</td>
+    </tr>
+    <tr>
+      <td><b>Akademik</b></td><td align="center"><b>0.30</b></td>
+      <td>Penurunan nilai dari penilaian sebelumnya, ditambah posisi nilai saat ini (makin di bawah standar, makin tinggi).</td>
+    </tr>
+    <tr>
+      <td><b>Pelanggaran</b></td><td align="center"><b>0.25</b></td>
+      <td>Total poin pelanggaran selama jendela berjalan. Pekan pembanding dipakai untuk arah tren saja.</td>
+    </tr>
+  </table>
+  <p>Siswa tanpa catatan pelanggaran bernilai nol dan itu <b>kondisi sah</b> — bukan berarti datanya kurang.</p>
+
+  <h3>Langkah perhitungan (contoh nyata)</h3>
+  <p>Misalkan dua siswa pada satu angkatan:</p>
+  <ol class="steps">
+    <li><b>Nilai mentah tiap kriteria.</b> Budi: alpa naik cukup tajam (kehadiran 0.60), nilai turun sedang (akademik 0.35), total 55 poin pelanggaran. Andi: kondisi rapi (semua mendekati 0).</li>
+    <li><b>Normalisasi antar siswa.</b> Setiap nilai mentah dibandingkan dengan siswa <b>terparah di angkatan</b> untuk kriteria yang sama. Misal siswa dengan pelanggaran terparah punya 110 poin → Budi = 55 ÷ 110 = <b>0.50</b>; yang terparah = 1.00; siswa bersih = 0.</li>
+    <li><b>Kalikan bobot, jumlahkan.</b></li>
+  </ol>
+  <div class="formula">
+    Skor = (0.45 × nilai kehadiran) + (0.30 × nilai akademik) + (0.25 × nilai pelanggaran)
+  </div>
+  <p>Kontribusi pelanggaran Budi = 0.50 × 0.25 = <b>0.125</b>. Setelah kehadiran dan akademik dijumlahkan, katakanlah skor total Budi = <b>0.84</b>.</p>
+
+  <h3>Tingkat prioritas</h3>
+  <table>
+    <tr><th>Skor akhir</th><th>Prioritas</th><th>Arti praktis</th></tr>
+    <tr><td>≥ 0.80</td><td><span class="pill high">Tinggi</span></td><td>Perlu intervensi segera</td></tr>
+    <tr><td>0.60 – 0.79</td><td><span class="pill medium">Sedang</span></td><td>Perlu pemantauan aktif / pendampingan ringan</td></tr>
+    <tr><td>&lt; 0.60</td><td><span class="pill low">Rendah</span></td><td>Kondisi stabil</td></tr>
+  </table>
+
+  <h3>Kenapa hasilnya bisa dipercaya</h3>
+  <ul>
+    <li>Setiap rekomendasi menyertakan <b>rincian per kriteria</b> (nilai mentah, skor ternormalisasi, kontribusi bobot) dan <b>kalimat alasan</b>, misalnya <i>"Rasio alpa naik dari 2.1% menjadi 8.3%"</i> atau <i>"Poin pelanggaran naik dari 5 menjadi 65 dibanding periode sebelumnya"</i>.</li>
+    <li>Angka selalu bisa ditelusuri balik ke data yang diimpor — tidak ada kotak hitam.</li>
+  </ul>
+
+  <div class="note warn">
+    Skor adalah <b>alat bantu urutan prioritas</b>, bukan label atas kondisi siswa.
+    Keputusan akhir tetap di tangan Guru BK yang mengenal konteks tiap anak.
+  </div>
+</section>
+
+<!-- ================= 7 ================= -->
+<section id="s7">
+  <h2 class="sec"><span class="no">7</span>Halaman Rekomendasi</h2>
+  <ol class="steps">
+    <li>Tekan tombol <b>Buat Rekomendasi</b> — sistem menganalisis seluruh siswa berdasarkan data terbaru.</li>
+    <li>Daftar tampil <b>terurut dari skor tertinggi</b>; gunakan saringan prioritas/status dan pencarian bila perlu.</li>
+    <li>Buka detail siswa untuk melihat rincian perhitungan dan alasan lengkap.</li>
+    <li>Beri tindak lanjut pada tiap rekomendasi: <b>Terima</b> (layak diintervensi) atau <b>Tolak</b> (misalnya sudah tertangani di luar sistem).</li>
+  </ol>
+  <div class="note ok">
+    Rekomendasi berstatus <b>pending</b> (menunggu tinjauan) tidak otomat menjadi intervensi —
+    hanya rekomendasi yang <b>diterima</b> yang bisa diturunkan menjadi rencana intervensi.
+  </div>
+</section>
+
+<!-- ================= 8 ================= -->
+<section id="s8">
+  <h2 class="sec"><span class="no">8</span>Rencana Intervensi</h2>
+  <p>Rencana intervensi adalah bentuk nyata dari tindak lanjut. Saat membuatnya, pilih siswa dari salah satu daftar berikut:</p>
+  <ul>
+    <li><b>Intervensi baru</b> — siswa yang rekomendasinya Anda <b>terima</b> dan belum memiliki rencana intervensi apa pun.</li>
+    <li><b>Lanjutan</b> — siswa yang pernah <b>menyelesaikan</b> intervensi sebelumnya dan saat ini tidak sedang menjalani rencana aktif. Gunakan ini bila kebutuhan pendampingannya muncul kembali.</li>
+  </ul>
+  <div class="note">
+    Siswa yang rencananya masih <b>Direncanakan</b> atau <b>Berlangsung</b> tidak muncul di kedua daftar —
+    satu siswa hanya memiliki satu intervensi yang berjalan pada satu waktu.
+  </div>
+
+  <h3>Isi sebuah rencana</h3>
+  <ul>
+    <li><b>Siswa</b> — dipilih dari daftar di atas; tersedia kotak pencarian nama/NIS.</li>
+    <li><b>Rencana tindakan</b> — langkah konkret yang akan dilakukan, mis. <i>"Konseling individu 2×/bulan + komunikasi mingguan dengan wali kelas"</i>. Kolom ini wajib.</li>
+    <li><b>Jenis bimbingan</b> — kategori bentuk layanan: konseling individual, pertemuan orang tua, atau lainnya.</li>
+  </ul>
+  <p>Alur status: <span class="pill low">Direncanakan</span> → <span class="pill medium">Berlangsung</span> → <span class="pill low">Selesai</span>. Tekan <b>Mulai</b> saat intervensi mulai dijalankan.</p>
+  <p>Saat menekan <b>Selesai</b>, muncul dialog yang <b>mewajibkan pengisian catatan hasil intervensi</b> — perkembangan siswa dan tindak lanjutnya. Catatan inilah yang menjadi rekam hasil dan tampil pada kartu rencana; status baru berubah menjadi Selesai setelah catatan disimpan.</p>
+</section>
+
+<!-- ================= 9 ================= -->
+<section id="s9">
+  <h2 class="sec"><span class="no">9</span>Profil &amp; Kata Sandi</h2>
+  <ul>
+    <li>Menu <b>Profil</b>: ubah <b>nama</b> yang tampil di aplikasi, dan <b>ganti kata sandi</b> (minimal 8 karakter, diketik dua kali untuk konfirmasi).</li>
+    <li>Email dan peran (Guru BK/Admin) hanya tampilan — perubahan keduanya dilakukan oleh pengelola sistem.</li>
+    <li>Lupa kata sandi? Hubungi pengelola aplikasi untuk meresetnya.</li>
+  </ul>
+</section>
+
+<!-- ================= 10 ================= -->
+<section id="s10">
+  <h2 class="sec"><span class="no">10</span>Pertanyaan Umum</h2>
+
+  <h3>Impor saya "menolak 12 dari 500 baris" — apakah gagal?</h3>
+  <p>Tidak. 488 baris lain tetap berhasil masuk. Buka tabel penolakan, perbaiki baris yang disebut (mis. NIS salah tulis atau tanggal tidak valid), lalu impor ulang berkasnya — baris yang sudah berhasil tidak akan digandakan.</p>
+
+  <h3>Tombol Buat Rekomendasi menolak dengan pesan data kurang</h3>
+  <p>Analisis tren butuh riwayat kehadiran beberapa pekan. Impor rekapan pekan-pekan sebelumnya terlebih dahulu, atau tunggu hingga cukup.</p>
+
+  <h3>Grafik tren hanya menampilkan satu titik</h3>
+  <p>Normal. Titik baru muncul setelah ada pekan kehadiran baru dan rekomendasi dibuat ulang. Tekan Generate berulang pada data yang sama tidak akan menambah titik.</p>
+
+  <h3>Kenapa skor siswa berubah padahal datanya tidak saya sentuh?</h3>
+  <p>Karena normalisasi bersifat relatif: pembandingnya adalah siswa terparah pada data yang dianalisis. Ketika data siswa lain bertambah (misal kelas baru diimpor), posisi relatif bisa bergeser. Buat ulang rekomendasi setelah data periode itu lengkap.</p>
+
+  <h3>Ada jenis pelanggaran baru di sekolah</h3>
+  <p>Kode kategori dikelola di dalam sistem. Ajukan kepada pengelola aplikasi untuk menambah kode dan poinnya sesuai tata tertib terbaru.</p>
+
+  <h3>Apakah INTERA bisa memberi diagnosis psikologis?</h3>
+  <p>Tidak, dan memang tidak dirancang untuk itu. INTERA mengurutkan prioritas dari data operasional sekolah. Penilaian kondisi psikologis dan keputusan intervensi sepenuhnya milik Guru BK.</p>
+</section>
+
+<footer>
+  INTERA · Manual Pengguna · Dokumen internal sekolah
+</footer>
+
+</div>
+</body>
+</html>
